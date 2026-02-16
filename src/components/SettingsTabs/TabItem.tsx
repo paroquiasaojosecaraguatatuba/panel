@@ -13,9 +13,11 @@ export const TabItem = ({ value, title, isSelected = false }: TabItemProps) => {
   return (
     <Tabs.Trigger
       value={value}
-      className="relative cursor-pointer px-1 pb-4 text-sm font-medium text-brand-600 hover:text-brand-700 data-[state=active]:text-brand-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 focus-visible:ring-offset-2 rounded-t-md"
+      className="group relative cursor-pointer px-1 pb-4 text-sm font-medium text-brand-600 hover:text-brand-700 data-[state=active]:text-brand-700 focus:outline-none"
     >
-      <span className="font-medium">{title}</span>
+      <span className="font-medium group-focus-visible:ring-2 group-focus-visible:ring-brand-300 group-focus-visible:ring-offset-4 group-focus-visible:ring-offset-brand-0 rounded">
+        {title}
+      </span>
 
       {isSelected && (
         <motion.div

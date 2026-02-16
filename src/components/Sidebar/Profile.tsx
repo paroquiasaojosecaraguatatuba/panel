@@ -17,7 +17,7 @@ export function Profile() {
       </div>
       <button
         type="button"
-        className="ml-auto rounded-md p-2 hover:cursor-pointer hover:bg-brand-800 focus-visible:ring-2 focus-visible:ring-brand-400 outline-none transition-colors"
+        className="ml-auto rounded-md p-2 hover:cursor-pointer hover:bg-brand-700/30 focus-visible:ring-2 focus-visible:ring-brand-400 outline-none transition-colors"
       >
         <LogOut className="h-5 w-5 text-brand-300" />
       </button>

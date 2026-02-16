@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import {
   type ComponentProps,
@@ -6,27 +6,27 @@ import {
   useContext,
   useId,
   useState,
-} from 'react'
+} from "react";
 
-export type RootProps = ComponentProps<'div'>
+export type RootProps = ComponentProps<"div">;
 
 type FileInputContextType = {
-  id: string
-  files: File[]
-  onFilesSelected: (files: File[], multiple: boolean) => void
-}
+  id: string;
+  files: File[];
+  onFilesSelected: (files: File[], multiple: boolean) => void;
+};
 
-const FileInputContext = createContext({} as FileInputContextType)
+const FileInputContext = createContext({} as FileInputContextType);
 
 export function Root(props: RootProps) {
-  const id = useId()
-  const [files, setFiles] = useState<File[]>([])
+  const id = useId();
+  const [files, setFiles] = useState<File[]>([]);
 
   function onFilesSelected(files: File[], multiple: boolean) {
     if (multiple) {
-      setFiles(prevFiles => [...prevFiles, ...files])
+      setFiles((prevFiles) => [...prevFiles, ...files]);
     } else {
-      setFiles(files)
+      setFiles(files);
     }
   }
 
@@ -34,7 +34,7 @@ export function Root(props: RootProps) {
     <FileInputContext.Provider value={{ id, files, onFilesSelected }}>
       <div {...props} />
     </FileInputContext.Provider>
-  )
+  );
 }
 
-export const useFileInput = () => useContext(FileInputContext)
+export const useFileInput = () => useContext(FileInputContext);
