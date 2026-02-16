@@ -31,9 +31,9 @@ export const AddChurchDialog = () => {
             <div>
               <label
                 htmlFor="photo"
-                className="flex flex-1 cursor-pointer flex-col items-center gap-3 rounded-lg border border-zinc-300 px-6 py-4 text-center text-zinc-500 shadow-sm hover:ring-1 hover:ring-brand-300"
+                className="flex flex-1 cursor-pointer flex-col items-center gap-3 rounded-lg border border-zinc-300 px-6 py-4 text-center text-zinc-500 shadow-sm hover:ring-1 hover:ring-brand-300 hover:bg-brand-0/60"
               >
-                <div className="rounded-full border-6 border-zinc-50 bg-zinc-100 p-2">
+                <div className="rounded-full border-6 border-zinc-100 bg-zinc-200/50 p-2">
                   <UploadCloud className="h-5 w-5 text-zinc-600" />
                 </div>
 
