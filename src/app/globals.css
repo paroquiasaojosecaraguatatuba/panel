@@ -1,19 +1,33 @@
 @import "tailwindcss";
 
 @theme {
-  --grid-template-columns-app: minmax(18rem, 20rem) 1fr;
+  --grid-template-columns-app: minmax(24rem, 20rem) 1fr;
   --grid-template-columns-profile: max-content 1fr min-content;
+  --grid-template-columns-card: repeat(3, minmax(20rem, 1fr));
 
   /* Brand scale */
   --color-brand-0: #fbf6f3;
-  --color-brand-50: #f4ebe6;
-  --color-brand-100: #ead8cf;
-  --color-brand-200: #d9bfb1;
-  --color-brand-300: #c4a292;
-  --color-brand-400: #a67f6b;
-  --color-brand-500: #8b6654;
-  --color-brand-600: #6f4e3f;
-  --color-brand-700: #563a2f;
-  --color-brand-800: #472f26;
-  --color-brand-900: #3a261e; /* novo menu bg */
+  --color-brand-50: #f5ede4;
+  --color-brand-100: #e5d5c4;
+  --color-brand-200: #e8c4a8;
+  --color-brand-300: #d8b498;
+  --color-brand-400: #c9795a;
+  --color-brand-500: #a95a3a;
+  --color-brand-600: #9d6e4a;
+  --color-brand-700: #8b5e3c;
+  --color-brand-800: #6b3e1c;
+  --color-brand-900: #4a2e13; /* novo menu bg */
+
+  --color-black-a9: rgba(0, 0, 0, 0.7);
+}
+
+@layer utilities {
+  .bg-brand-gradient {
+    background: linear-gradient(180deg, #6b3e1c 0%, #4a2e13 100%);
+  }
+
+  .antialiased {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
 }
