@@ -1,7 +1,8 @@
 "use client";
 
+import { Church, X as CloseIcon } from "lucide-react";
 import * as Dialog from "@radix-ui/react-dialog";
-import { Church, X as CloseIcon, UploadCloud } from "lucide-react";
+import * as FileInput from "@/components/Form/FileInput";
 import { AddCard } from "../AddCard";
 
 import "./styles.css";
@@ -28,30 +29,10 @@ export const AddChurchDialog = () => {
           </Dialog.Title>
 
           <div className="p-4">
-            <div>
-              <label
-                htmlFor="photo"
-                className="flex flex-1 cursor-pointer flex-col items-center gap-3 rounded-lg border border-zinc-300 px-6 py-4 text-center text-zinc-500 shadow-sm hover:ring-1 hover:ring-brand-300 hover:bg-brand-0/60"
-              >
-                <div className="rounded-full border-6 border-zinc-100 bg-zinc-200/50 p-2">
-                  <UploadCloud className="h-5 w-5 text-zinc-600" />
-                </div>
-
-                <div className="flex flex-col items-center gap-1">
-                  <span className="text-sm">
-                    <span className="font-semibold text-brand-700">
-                      Clique para enviar
-                    </span>{" "}
-                    a foto da igreja
-                  </span>
-                  <span className="text-xs">
-                    PNG, JPG ou JPEG (max. 1200x900px)
-                  </span>
-                </div>
-              </label>
-
-              <input type="file" className="sr-only" id="photo" />
-            </div>
+            <FileInput.Root>
+              <FileInput.Trigger />
+              <FileInput.Control />
+            </FileInput.Root>
           </div>
 
           <div className="p-4 flex gap-3 justify-end items-center border-t border-zinc-200">
