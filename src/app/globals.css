@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 @theme {
-  --grid-template-columns-app: minmax(24rem, 20rem) 1fr;
+  --grid-template-columns-app: minmax(22.5rem, 20rem) 1fr;
   --grid-template-columns-profile: max-content 1fr min-content;
   --grid-template-columns-card: repeat(3, minmax(20rem, 1fr));
   --grid-template-columns-form: minmax(7.5rem, 17.5rem) minmax(25rem, 1fr)
