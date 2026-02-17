@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Calendar,
   Church,
@@ -19,19 +21,36 @@ export function Sidebar() {
 
       <div className="h-px bg-brand-700/30" />
 
-      <nav className="space-y-0.5 px-4">
-        <NavItem title="Paróquia" icon={Church} />
-        <NavItem title="Agenda" icon={Calendar} />
-        <NavItem title="Blog" icon={MessageSquare} />
-        <NavItem title="Galeria" icon={Image} />
-      </nav>
+      <div className="space-y-0.5 px-4">
+        <NavItem
+          title="Paróquia"
+          icon={Church}
+          links={[
+            {
+              title: "Igrejas",
+              href: "/churches",
+            },
+            {
+              title: "Autoridades",
+              href: "/autoridades",
+            },
+            {
+              title: "Pastorais",
+              href: "/pastorais",
+            },
+          ]}
+        />
+        <NavItem title="Agenda" icon={Calendar} links={[]} />
+        <NavItem title="Blog" icon={MessageSquare} links={[]} />
+        <NavItem title="Galeria" icon={Image} links={[]} />
+      </div>
 
       <div className="mt-auto flex flex-col gap-6 ">
         <div className="h-px bg-brand-700/30" />
 
         <nav className="space-y-0.5 px-4">
-          <NavItem title="Suporte" icon={LifeBuoy} />
-          <NavItem title="Configurações" icon={Cog} />
+          <NavItem title="Suporte" icon={LifeBuoy} links={[]} />
+          <NavItem title="Configurações" icon={Cog} links={[]} />
         </nav>
 
         <div className="h-px bg-brand-700/30" />

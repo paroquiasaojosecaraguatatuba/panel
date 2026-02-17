@@ -16,7 +16,7 @@ export const AddCard = ({ title, subtitle, icon: Icon }: AddCardProps) => {
           <Plus className="text-brand-600 w-5 h-5" />
         </div>
       </div>
-      <p className="text-brand-700">
+      <p className="text-brand-700 text-center">
         <span className="font-semibold">{title}</span> {subtitle}
       </p>
     </div>

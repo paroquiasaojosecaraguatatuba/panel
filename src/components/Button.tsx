@@ -15,7 +15,7 @@ const button = tv({
       ghost:
         "rounded-md px-2 hover:bg-brand-50 text-zinc-500 shadow-none hover:text-brand-600 focus-visible:ring-4 focus-visible:ring-brand-100 focus-visible:ring-offset-1",
       outline:
-        "border border-zinc-300 text-zinc-700 hover:bg-brand-0 hover:border-brand-300 focus-visible:ring-4 focus-visible:ring-brand-100 focus-visible:ring-offset-1",
+        "bg-white border border-brand-300 text-zinc-700 hover:bg-brand-0 hover:border-brand-300 focus-visible:ring-4 focus-visible:ring-brand-100 focus-visible:ring-offset-1",
     },
   },
 

@@ -1,11 +1,15 @@
-import { SettingsTabs } from "@/components/SettingsTabs/Index";
+import { Describe } from "@/components/Typographies/Describe";
+import { Title } from "@/components/Typographies/Title";
 
 export default function Home() {
   return (
     <>
-      <h1 className="text-3xl font-medium text-brand-800">Paróquia</h1>
+      <Title>Paróquia São José</Title>
 
-      <SettingsTabs />
+      <Describe>
+        Bem-vindo ao painel de administração da Paróquia São José de
+        Caraguatatuba.
+      </Describe>
     </>
   );
 }
