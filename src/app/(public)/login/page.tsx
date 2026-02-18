@@ -1,73 +1,63 @@
+import Button from "@/components/Button";
+import { Input } from "@/components/Form/Input";
+import { Describe } from "@/components/Typographies/Describe";
+import { Lock, Mail } from "lucide-react";
 import Image from "next/image";
 
 export default function Login() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:grayscale"
-          src="/avatar.svg"
-          alt="São José com o Menino Jesus"
-          width={75}
-          height={75}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <main className="min-h-screen flex flex-col items-center justify-center">
+      <div className="flex flex-col gap-6 row-start-2 items-center justify-center max-w-96 w-full mx-auto px-4 py-12">
+        <div className="flex flex-col items-center justify-center border-b border-brand-100/60 pb-6">
+          <Image
+            src="/avatar.svg"
+            alt="São José com o Menino Jesus"
+            width={75}
+            height={75}
+            priority
+          />
+          <h1 className="text-2xl font-medium text-brand-900 mt-4">
+            Acessar Painel
+          </h1>
+          <Describe>Jesus, Maria e José, a nossa família vossa é!</Describe>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+
+        <form className="w-full">
+          <div className="flex flex-col gap-3 pb-5">
+            <label
+              htmlFor="email"
+              className="text-sm font-medium text-brand-800"
+            >
+              Email
+            </label>
+            <Input.Root>
+              <Input.Prefix>
+                <Mail className="h-5 w-5 text-brand-300" />
+              </Input.Prefix>
+              <Input.Control id="email" type="text" />
+            </Input.Root>
+          </div>
+
+          <div className="flex flex-col gap-3 pb-5">
+            <label
+              htmlFor="password"
+              className="text-sm font-medium text-brand-800"
+            >
+              Senha
+            </label>
+            <Input.Root>
+              <Input.Prefix>
+                <Lock className="h-5 w-5 text-brand-300" />
+              </Input.Prefix>
+              <Input.Control id="password" type="password" />
+            </Input.Root>
+          </div>
+
+          <Button type="submit" className="w-full mt-4">
+            Entrar
+          </Button>
+        </form>
+      </div>
+    </main>
   );
 }

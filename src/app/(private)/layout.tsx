@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "./globals.css";
+import { Sidebar } from "@/components/Sidebar";
+import "../globals.css";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -24,7 +25,12 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
       </head>
       <body className={`${inter.variable} antialiased`}>
-        <div className="min-h-screen">{children}</div>
+        <div className="lg:grid-cols-app min-h-screen lg:grid">
+          <Sidebar />
+          <main className="max-w-[100vw] px-4 pt-30 pb-12 lg:col-start-2 lg:px-8 lg:pt-8">
+            {children}
+          </main>
+        </div>
       </body>
     </html>
   );

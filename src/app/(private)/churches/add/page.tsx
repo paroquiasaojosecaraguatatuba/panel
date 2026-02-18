@@ -16,7 +16,7 @@ export default function AddChurch() {
 
       <form
         id="settings"
-        className="mt-6 flex w-full flex-col gap-5 divide-y divide-brand-100/60 dark:divide-zinc-700"
+        className="mt-6 flex w-full flex-col gap-5 divide-y divide-brand-100/60"
       >
         <div className="lg:grid-cols-form flex flex-col gap-3 pb-5 lg:grid">
           <label htmlFor="cover" className="text-md font-medium text-brand-800">
@@ -25,8 +25,9 @@ export default function AddChurch() {
               Esta imagem será exibida publicamente.
             </span>
           </label>
-          <FileInput.Root className="flex flex-col gap-5 lg:flex-row lg:items-start">
+          <FileInput.Root>
             <FileInput.Trigger />
+            <FileInput.FileList />
             <FileInput.Control />
           </FileInput.Root>
         </div>
