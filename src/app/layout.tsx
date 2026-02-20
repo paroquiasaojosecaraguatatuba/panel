@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import AppProvider from "@/providers/AppProvider";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -13,7 +14,7 @@ export const metadata: Metadata = {
     "Site oficial da Paróquia São José em Caraguatatuba, SP. Encontre informações sobre missas, eventos, ministérios e serviços comunitários. Junte-se a nós na fé e na celebração da vida cristã.",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -24,7 +25,9 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
       </head>
       <body className={`${inter.variable} antialiased`}>
-        <div className="min-h-screen">{children}</div>
+        <AppProvider>
+          <div className="min-h-screen">{children}</div>
+        </AppProvider>
       </body>
     </html>
   );

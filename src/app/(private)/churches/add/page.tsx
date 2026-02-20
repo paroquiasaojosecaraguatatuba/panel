@@ -1,11 +1,19 @@
 import { BackButton } from "@/components/BackButton";
 import { Title } from "@/components/Typographies/Title";
 
-import * as FileInput from "@/components/Form/FileInput";
+import {
+  Root as FileInputRoot,
+  Trigger as FileInputTrigger,
+  FileList as FileInputFileList,
+  Control as FileInputControl,
+} from "@/components/Form/FileInput";
 import Button from "@/components/Button";
-import { Input } from "@/components/Form/Input";
 import { Select } from "@/components/Form/Select";
 import { SelectItem } from "@/components/Form/Select/SelectItem";
+import {
+  Root as InputRoot,
+  Control as InputControl,
+} from "@/components/Form/Input";
 
 export default function AddChurch() {
   return (
@@ -25,11 +33,11 @@ export default function AddChurch() {
               Esta imagem será exibida publicamente.
             </span>
           </label>
-          <FileInput.Root>
-            <FileInput.Trigger />
-            <FileInput.FileList />
-            <FileInput.Control />
-          </FileInput.Root>
+          <FileInputRoot>
+            <FileInputTrigger />
+            <FileInputFileList />
+            <FileInputControl />
+          </FileInputRoot>
         </div>
 
         <div className="lg:grid-cols-form flex flex-col gap-3 pb-5 lg:grid">
@@ -39,9 +47,9 @@ export default function AddChurch() {
           >
             Nome da Comunidade
           </label>
-          <Input.Root>
-            <Input.Control id="name" type="text" />
-          </Input.Root>
+          <InputRoot>
+            <InputControl id="name" type="text" />
+          </InputRoot>
         </div>
 
         <div className="lg:grid-cols-form flex flex-col gap-3 pb-5 lg:grid">
@@ -64,9 +72,9 @@ export default function AddChurch() {
           >
             Endereço
           </label>
-          <Input.Root>
-            <Input.Control id="address" type="text" />
-          </Input.Root>
+          <InputRoot>
+            <InputControl id="address" type="text" />
+          </InputRoot>
         </div>
       </form>
 

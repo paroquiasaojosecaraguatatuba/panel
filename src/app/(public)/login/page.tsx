@@ -1,8 +1,6 @@
-import Button from "@/components/Button";
-import { Input } from "@/components/Form/Input";
 import { Describe } from "@/components/Typographies/Describe";
-import { Lock, Mail } from "lucide-react";
 import Image from "next/image";
+import { Form } from "./form";
 
 export default function Login() {
   return (
@@ -22,41 +20,7 @@ export default function Login() {
           <Describe>Jesus, Maria e José, a nossa família vossa é!</Describe>
         </div>
 
-        <form className="w-full">
-          <div className="flex flex-col gap-3 pb-5">
-            <label
-              htmlFor="email"
-              className="text-sm font-medium text-brand-800"
-            >
-              Email
-            </label>
-            <Input.Root>
-              <Input.Prefix>
-                <Mail className="h-5 w-5 text-brand-300" />
-              </Input.Prefix>
-              <Input.Control id="email" type="text" />
-            </Input.Root>
-          </div>
-
-          <div className="flex flex-col gap-3 pb-5">
-            <label
-              htmlFor="password"
-              className="text-sm font-medium text-brand-800"
-            >
-              Senha
-            </label>
-            <Input.Root>
-              <Input.Prefix>
-                <Lock className="h-5 w-5 text-brand-300" />
-              </Input.Prefix>
-              <Input.Control id="password" type="password" />
-            </Input.Root>
-          </div>
-
-          <Button type="submit" className="w-full mt-4">
-            Entrar
-          </Button>
-        </form>
+        <Form />
       </div>
     </main>
   );

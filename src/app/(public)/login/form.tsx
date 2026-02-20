@@ -1,0 +1,97 @@
+"use client";
+
+import Button from "@/components/Button";
+import { Input } from "@/components/Form/Input";
+import { Lock, Mail } from "lucide-react";
+import { useMutation } from "@tanstack/react-query";
+import { login } from "@/api/login";
+import useTranslator from "@/hooks/useTranslator";
+import { useNavigate } from "@/hooks/useNavigate";
+import { handleFieldErrors } from "@/utils/fieldsUtils";
+import { useFormik } from "formik";
+import useLoginSchema from "@/schemas/useLoginSchema";
+import useAuthStore from "@/stores/useAuthStore";
+
+export const Form = () => {
+  const { t } = useTranslator();
+  const navigate = useNavigate();
+  const validationSchema = useLoginSchema();
+  const { setLogged } = useAuthStore();
+
+  const { mutate } = useMutation({
+    mutationFn: login,
+    onSuccess: ({ message, statusCode, token, fields }) => {
+      if (statusCode === 200) {
+        setLogged({ token });
+        navigate.push("/");
+      } else if (fields) {
+        handleFieldErrors(fields, formik.setFieldError);
+      } else {
+        window.alert(message || t("something-went-wrong"));
+      }
+    },
+    onError: (error) => {
+      console.error(error);
+      window.alert(t("something-went-wrong"));
+    },
+  });
+
+  const formik = useFormik({
+    initialValues: {
+      email: "",
+      password: "",
+    },
+    validationSchema,
+    onSubmit: (values) => {
+      mutate(values);
+    },
+  });
+
+  return (
+    <form className="w-full" onSubmit={formik.handleSubmit}>
+      <div className="flex flex-col gap-3 pb-5">
+        <label htmlFor="email" className="text-sm font-medium text-brand-800">
+          Email
+        </label>
+        <Input.Root error={formik.errors.email} touched={formik.touched.email}>
+          <Input.Prefix>
+            <Mail className="h-5 w-5 text-brand-300" />
+          </Input.Prefix>
+          <Input.Control
+            id="email"
+            type="text"
+            value={formik.values.email}
+            onChange={formik.handleChange}
+          />
+        </Input.Root>
+      </div>
+
+      <div className="flex flex-col gap-3 pb-5">
+        <label
+          htmlFor="password"
+          className="text-sm font-medium text-brand-800"
+        >
+          Senha
+        </label>
+        <Input.Root
+          error={formik.errors.password}
+          touched={formik.touched.password}
+        >
+          <Input.Prefix>
+            <Lock className="h-5 w-5 text-brand-300" />
+          </Input.Prefix>
+          <Input.Control
+            id="password"
+            type="password"
+            value={formik.values.password}
+            onChange={formik.handleChange}
+          />
+        </Input.Root>
+      </div>
+
+      <Button type="submit" className="w-full mt-4">
+        Entrar
+      </Button>
+    </form>
+  );
+};

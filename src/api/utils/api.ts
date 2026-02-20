@@ -25,9 +25,11 @@ export const api = async <ResponseData, K extends string = never>(
     }
 > => {
   const { lang, timezoneOffset, timezone } = useLocaleConfigStore.getState();
-  const { accessToken, setLoggedOut } = useAuthStore.getState();
+  const { token, setLoggedOut } = useAuthStore.getState();
 
-  const response = await fetch(`${options?.apiBaseUrl || apiBaseUrl}${path}`, {
+  const endpoint = `${options?.apiBaseUrl || apiBaseUrl}${path}`;
+
+  const response = await fetch(endpoint, {
     ...init,
     headers: {
       "Accept-Language": lang,
@@ -36,7 +38,7 @@ export const api = async <ResponseData, K extends string = never>(
       "X-Timezone": timezone,
       ...(options?.authenticated
         ? {
-            Authorization: `Bearer ${accessToken}`,
+            Authorization: `Bearer ${token}`,
           }
         : {}),
       ...init?.headers,

@@ -1,8 +1,8 @@
 export const logout = async () => {
-  const result = await fetch("/api/logout", {
+  const response = await fetch("/api/logout", {
     method: "POST",
     body: JSON.stringify({}),
   });
 
-  return result;
+  return { statusCode: response.status };
 };

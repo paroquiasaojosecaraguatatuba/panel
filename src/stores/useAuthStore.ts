@@ -3,14 +3,14 @@ import { createJSONStorage, persist } from "zustand/middleware";
 
 interface States {
   isLogged: boolean;
-  accessToken: string | null;
+  token: string | null;
   initialized: boolean;
   wasCodeSent: boolean;
   email: string;
   sessionId: string;
   showOnboarding: boolean;
   onboardingName: string;
-  setLogged: (data: { accessToken?: string; initialized?: boolean }) => void;
+  setLogged: (data: { token?: string; initialized?: boolean }) => void;
   setLoggedOut: () => void;
   setEmail: (email: string) => void;
   setWasCodeSent: (wasCodeSent: boolean) => void;
@@ -24,7 +24,7 @@ const useAuthStore = create<States>()(
       userIdentifier: "",
       wasCodeSent: false,
       isLogged: false,
-      accessToken: null,
+      token: null,
       initialized: false,
       logoutReason: null,
       email: "",
@@ -35,7 +35,7 @@ const useAuthStore = create<States>()(
         set((state) => ({
           ...state,
           ...values,
-          isLogged: Boolean(values.accessToken),
+          isLogged: Boolean(values.token),
         })),
       setLoggedOut: () => {
         return set({
@@ -43,7 +43,7 @@ const useAuthStore = create<States>()(
           sessionId: "",
           wasCodeSent: false,
           isLogged: false,
-          accessToken: null,
+          token: null,
           initialized: false,
         });
       },
