@@ -2,9 +2,6 @@ import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import { getTranslator } from "@/dictionaries/utils/getTranslator";
 
-export const runtime = "edge";
-export const dynamic = "force-dynamic";
-
 export async function POST(request: Request) {
   const lang = request.headers.get("Accept-Language") || "pt-BR";
 
