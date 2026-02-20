@@ -1,16 +1,16 @@
 "use client";
 
-import Button from "@/components/Button";
-import { Input } from "@/components/Form/Input";
 import { Lock, Mail } from "lucide-react";
 import { useMutation } from "@tanstack/react-query";
 import { login } from "@/api/login";
 import useTranslator from "@/hooks/useTranslator";
+import useLoginSchema from "@/schemas/useLoginSchema";
+import useAuthStore from "@/stores/useAuthStore";
 import { useNavigate } from "@/hooks/useNavigate";
 import { handleFieldErrors } from "@/utils/fieldsUtils";
 import { useFormik } from "formik";
-import useLoginSchema from "@/schemas/useLoginSchema";
-import useAuthStore from "@/stores/useAuthStore";
+import * as Input from "@/components/Form/Input";
+import Button from "@/components/Button";
 
 export const Form = () => {
   const { t } = useTranslator();

@@ -1,28 +1,7 @@
-"use client";
-
-import { createContext, useContext, type ComponentProps } from "react";
+import { createContext, type ComponentProps } from "react";
 import { twMerge } from "tailwind-merge";
 
-type InputPrefixProps = ComponentProps<"div">;
-
-function InputPrefix(props: InputPrefixProps) {
-  return <div {...props} />;
-}
-
-type InputControlProps = ComponentProps<"input">;
-
-function InputControl(props: InputControlProps) {
-  return (
-    <input
-      className={twMerge([
-        "flex-1 border-0 bg-transparent p-0 text-brand-900 placeholder-zinc-600 outline-none",
-      ])}
-      {...props}
-    />
-  );
-}
-
-type InputRootProps = ComponentProps<"div"> & {
+type RootProps = ComponentProps<"div"> & {
   error?: string;
   touched?: boolean;
 };
@@ -33,7 +12,7 @@ type InputContextType = {
 
 const InputContext = createContext({} as InputContextType);
 
-function InputRoot({ error, touched, ...props }: InputRootProps) {
+export const Root = ({ error, touched, ...props }: RootProps) => {
   const showError = Boolean(error && touched);
 
   return (
@@ -63,9 +42,4 @@ function InputRoot({ error, touched, ...props }: InputRootProps) {
       </div>
     </InputContext.Provider>
   );
-}
-
-export const Prefix = InputPrefix;
-export const Control = InputControl;
-export const Root = InputRoot;
-export const useInput = () => useContext(InputContext);
+};
