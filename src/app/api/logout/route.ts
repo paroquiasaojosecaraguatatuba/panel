@@ -9,13 +9,15 @@ export async function POST(request: Request) {
 
   const { set } = await cookies();
 
+  const isDevEnv = process.env.ENVIRONMENT === "development";
+
   set("refreshToken", "", {
     httpOnly: true,
-    secure: process.env.NODE_ENV !== "development",
-    sameSite: process.env.NODE_ENV !== "development" ? "none" : "lax",
+    secure: !isDevEnv,
+    sameSite: isDevEnv ? "none" : "lax",
     maxAge: 0,
     path: "/",
-    ...(process.env.NODE_ENV === "development"
+    ...(isDevEnv
       ? { domain: "localhost" }
       : { domain: ".paroquiasaojosecaragua.com.br" }),
   });
