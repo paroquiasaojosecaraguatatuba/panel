@@ -9,6 +9,8 @@ interface HydrationProviderProps {
 export const HydrationProvider = ({ children }: HydrationProviderProps) => {
   const [isHydrated, setIsHydrated] = useState(false);
 
+  console.log("HydrationProvider rendered. isHydrated:", isHydrated);
+
   useEffect(() => {
     setIsHydrated(true);
   }, []);
