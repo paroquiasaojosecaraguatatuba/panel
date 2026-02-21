@@ -15,5 +15,5 @@ export const HydrationProvider = ({ children }: HydrationProviderProps) => {
     setIsHydrated(true);
   }, []);
 
-  return <div>{isHydrated ? children : null}</div>;
+  return isHydrated ? children : null;
 };
