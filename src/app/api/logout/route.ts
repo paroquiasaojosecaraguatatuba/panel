@@ -15,6 +15,9 @@ export async function POST(request: Request) {
     sameSite: process.env.NODE_ENV !== "development" ? "none" : "lax",
     maxAge: 0,
     path: "/",
+    ...(process.env.NODE_ENV === "development"
+      ? { domain: "localhost" }
+      : { domain: ".paroquiasaojosecaragua.com.br" }),
   });
 
   return NextResponse.json({
