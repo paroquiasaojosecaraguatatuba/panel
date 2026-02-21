@@ -2,9 +2,6 @@ import useLocaleConfigStore from "@/stores/useLocaleConfigStore";
 import useAuthStore from "@/stores/useAuthStore";
 import { logout } from "../logout";
 
-console.log("API Base URL:", process.env.NEXT_PUBLIC_BASE_API_URL);
-console.log("process.env", process.env);
-
 const apiBaseUrl = process.env.NEXT_PUBLIC_BASE_API_URL as string;
 
 interface ResponseErrorFields<K extends string> {
