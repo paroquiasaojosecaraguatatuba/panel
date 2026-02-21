@@ -20,7 +20,7 @@
   "services": [
     {
       "binding": "WORKER_SELF_REFERENCE",
-      "service": "panel",
+      "service": "panel-dev",
     },
   ],
   "observability": {
@@ -46,7 +46,7 @@
       "services": [
         {
           "binding": "WORKER_SELF_REFERENCE",
-          "service": "panel",
+          "service": "panel-staging",
         },
       ],
       "observability": {
