@@ -51,7 +51,6 @@ const AuthGuardProvider = () => {
   useEffect(() => {
     if (!sessionChecked) return;
 
-    const isProtectedRoute = routeUtils.isProtectedRoute(pathname);
     const isAuthRoute = routeUtils.isAuthRoute(pathname);
     const isConfirmCodePage = pathname.includes("/confirm-code");
 
@@ -61,7 +60,7 @@ const AuthGuardProvider = () => {
     }
 
     if (
-      (!isLogged && isProtectedRoute) ||
+      (!isLogged && !isAuthRoute) ||
       (isConfirmCodePage && !email && !isAuthRoute)
     ) {
       navigate.replace("/login");
