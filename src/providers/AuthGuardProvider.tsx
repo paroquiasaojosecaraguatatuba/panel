@@ -55,7 +55,7 @@ const AuthGuardProvider = () => {
     const isAuthRoute = routeUtils.isAuthRoute(pathname);
     const isConfirmCodePage = pathname.includes("/confirm-code");
 
-    if (!isLogged && token && isAuthRoute) {
+    if (isLogged && token && isAuthRoute) {
       navigate.replace("/");
       return;
     }
