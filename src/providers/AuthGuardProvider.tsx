@@ -14,6 +14,7 @@ const AuthGuardProvider = () => {
   const navigate = useNavigate();
   const { isLogged, email, token, setLogged } = useAuthStore();
   const [sessionChecked, setSessionChecked] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
 
   const { mutate } = useMutation({
     mutationFn: (signal: AbortSignal) => refresh(signal),
@@ -21,7 +22,14 @@ const AuthGuardProvider = () => {
     retry: 3,
   });
 
+  // Garantir que só roda no cliente após hidratação
   useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!isMounted) return;
+
     const controller = new AbortController();
 
     if (isLogged) {
@@ -46,10 +54,10 @@ const AuthGuardProvider = () => {
     return () => {
       controller.abort();
     };
-  }, [mutate, setLogged, isLogged]);
+  }, [mutate, setLogged, isLogged, isMounted]);
 
   useEffect(() => {
-    if (!sessionChecked) return;
+    if (!sessionChecked || !isMounted) return;
 
     const isProtectedRoute = routeUtils.isProtectedRoute(pathname);
     const isAuthRoute = routeUtils.isAuthRoute(pathname);
@@ -66,7 +74,10 @@ const AuthGuardProvider = () => {
     ) {
       navigate.replace("/login");
     }
-  }, [sessionChecked, isLogged, email, pathname, navigate, token]);
+  }, [sessionChecked, isLogged, email, pathname, navigate, token, isMounted]);
+
+  // Não renderiza nada até que o componente esteja montado no cliente
+  if (!isMounted) return null;
 
   return null;
 };
