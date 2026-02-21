@@ -11,7 +11,7 @@
   "workers_dev": false,
   "route": {
     "custom_domain": true,
-    "pattern": "panel.paroquiasaojosecaragua.com.br/*",
+    "pattern": "panel.paroquiasaojosecaragua.com.br",
     "zone_name": "paroquiasaojosecaragua.com.br",
   },
   "assets": {
@@ -35,7 +35,7 @@
       "name": "panel-staging",
       "route": {
         "custom_domain": true,
-        "pattern": "staging-panel.paroquiasaojosecaragua.com.br/*",
+        "pattern": "staging-panel.paroquiasaojosecaragua.com.br",
         "zone_name": "paroquiasaojosecaragua.com.br",
       },
       "assets": {
