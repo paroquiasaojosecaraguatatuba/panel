@@ -50,7 +50,9 @@ export const api = async <ResponseData, K extends string = never>(
   if (options?.authenticated && response.status === 401) {
     setLoggedOut();
     await logout();
-    window.location.href = "/login";
+    if (typeof window !== "undefined") {
+      window.location.href = "/login";
+    }
     return new Promise<never>(() => {}); // nunca resolve para aguardar o redirecionamento ser concluído
   }
 

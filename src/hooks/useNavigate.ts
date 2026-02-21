@@ -9,7 +9,9 @@ export const useNavigate = () => {
     push: (to: string) => router.push(to),
     replace: (to: string) => router.replace(to),
     redirect: (to: string) => {
-      window.location.href = to;
+      if (typeof window !== "undefined") {
+        window.location.href = to;
+      }
       return new Promise<never>(() => {}); // nunca resolve para aguardar o redirecionamento ser concluído
     },
   };

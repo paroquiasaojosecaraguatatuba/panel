@@ -4,6 +4,7 @@ import { logout } from "@/api/logout";
 import { useNavigate } from "@/hooks/useNavigate";
 import useTranslator from "@/hooks/useTranslator";
 import useAuthStore from "@/stores/useAuthStore";
+import { showAlert } from "@/utils/showAlert";
 import { useMutation } from "@tanstack/react-query";
 import { LogOut } from "lucide-react";
 import { useCallback } from "react";
@@ -20,11 +21,11 @@ export const LogoutButton = () => {
         setLoggedOut();
         navigate.replace("/login");
       } else {
-        window.alert(t("error-logging-out"));
+        showAlert(t("error-logging-out"));
       }
     },
     onError: () => {
-      window.alert(t("error-logging-out"));
+      showAlert(t("error-logging-out"));
     },
   });
 

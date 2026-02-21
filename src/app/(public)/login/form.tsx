@@ -11,6 +11,7 @@ import { handleFieldErrors } from "@/utils/fieldsUtils";
 import { useFormik } from "formik";
 import * as Input from "@/components/Form/Input";
 import Button from "@/components/Button";
+import { showAlert } from "@/utils/showAlert";
 
 export const Form = () => {
   const { t } = useTranslator();
@@ -27,12 +28,12 @@ export const Form = () => {
       } else if (fields) {
         handleFieldErrors(fields, formik.setFieldError);
       } else {
-        window.alert(message || t("something-went-wrong"));
+        showAlert(message || t("something-went-wrong"));
       }
     },
     onError: (error) => {
       console.error(error);
-      window.alert(t("something-went-wrong"));
+      showAlert(t("something-went-wrong"));
     },
   });
 
