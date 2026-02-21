@@ -4,17 +4,12 @@
  */
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "panel",
+  "name": "panel-dev",
   "main": ".open-next/worker.js",
   "compatibility_date": "2025-12-01",
   "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
   "workers_dev": false,
   "preview_urls": false,
-  "route": {
-    "custom_domain": true,
-    "pattern": "panel.paroquiasaojosecaragua.com.br",
-    "zone_name": "paroquiasaojosecaragua.com.br",
-  },
   "assets": {
     "binding": "ASSETS",
     "directory": ".open-next/assets",
@@ -39,6 +34,32 @@
       "route": {
         "custom_domain": true,
         "pattern": "panel-staging.paroquiasaojosecaragua.com.br",
+        "zone_name": "paroquiasaojosecaragua.com.br",
+      },
+      "assets": {
+        "binding": "ASSETS",
+        "directory": ".open-next/assets",
+      },
+      "images": {
+        "binding": "IMAGES",
+      },
+      "services": [
+        {
+          "binding": "WORKER_SELF_REFERENCE",
+          "service": "panel",
+        },
+      ],
+      "observability": {
+        "enabled": false,
+      },
+    },
+    "production": {
+      "name": "panel",
+      "workers_dev": false,
+      "preview_urls": false,
+      "route": {
+        "custom_domain": true,
+        "pattern": "panel.paroquiasaojosecaragua.com.br",
         "zone_name": "paroquiasaojosecaragua.com.br",
       },
       "assets": {
