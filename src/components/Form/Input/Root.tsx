@@ -1,3 +1,5 @@
+"use client";
+
 import { createContext, type ComponentProps } from "react";
 import { twMerge } from "tailwind-merge";
 
