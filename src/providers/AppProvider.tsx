@@ -8,10 +8,12 @@ const queryClient = new QueryClient();
 
 const AppProvider = ({ children }: { children?: React.ReactNode }) => {
   return (
-    <QueryClientProvider client={queryClient}>
-      <AuthGuardProvider />
-      <HydrationProvider>{children}</HydrationProvider>
-    </QueryClientProvider>
+    <HydrationProvider>
+      <QueryClientProvider client={queryClient}>
+        <AuthGuardProvider />
+        {children}
+      </QueryClientProvider>
+    </HydrationProvider>
   );
 };
 
