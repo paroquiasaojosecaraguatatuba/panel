@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { useMutation } from "@tanstack/react-query";
 
 import useAuthStore from "@/stores/useAuthStore";
-import { refresh } from "@/api/refresh";
+import { refresh } from "@/api/users/refresh";
 import { routeUtils } from "@/utils/routeUtils";
 import { useNavigate } from "@/hooks/useNavigate";
 

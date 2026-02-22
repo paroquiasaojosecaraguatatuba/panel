@@ -1,6 +1,6 @@
 "use client";
 
-import { logout } from "@/api/logout";
+import { logout } from "@/api/users/logout";
 import { useNavigate } from "@/hooks/useNavigate";
 import useTranslator from "@/hooks/useTranslator";
 import useAuthStore from "@/stores/useAuthStore";

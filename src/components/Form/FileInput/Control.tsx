@@ -16,6 +16,8 @@ export const Control = ({ multiple = false, ...props }: ControlProps) => {
     const files = Array.from(event.target.files);
 
     onFilesSelected(files, multiple);
+
+    event.target.value = "";
   }
 
   return (

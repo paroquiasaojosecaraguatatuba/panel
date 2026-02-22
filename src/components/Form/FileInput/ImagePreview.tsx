@@ -12,7 +12,7 @@ export const ImagePreview = () => {
       return null;
     }
 
-    return URL.createObjectURL(files[0]);
+    return URL.createObjectURL(files[0].file);
   }, [files]);
 
   if (previewURL === null) {

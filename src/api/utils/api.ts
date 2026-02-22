@@ -1,8 +1,8 @@
 import useLocaleConfigStore from "@/stores/useLocaleConfigStore";
 import useAuthStore from "@/stores/useAuthStore";
-import { logout } from "../logout";
+import { logout } from "../users/logout";
 
-const apiBaseUrl = process.env.NEXT_PUBLIC_BASE_API_URL as string;
+export const apiBaseUrl = process.env.NEXT_PUBLIC_BASE_API_URL as string;
 
 interface ResponseErrorFields<K extends string> {
   fields?: {

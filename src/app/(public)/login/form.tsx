@@ -2,7 +2,7 @@
 
 import { Lock, Mail } from "lucide-react";
 import { useMutation } from "@tanstack/react-query";
-import { login } from "@/api/login";
+import { login } from "@/api/users/login";
 import useTranslator from "@/hooks/useTranslator";
 import useLoginSchema from "@/schemas/useLoginSchema";
 import useAuthStore from "@/stores/useAuthStore";
