@@ -33,8 +33,8 @@
       "preview_urls": false,
       "route": {
         "custom_domain": true,
-        "pattern": "panel-staging.paroquiasaojosecaragua.com.br",
-        "zone_name": "paroquiasaojosecaragua.com.br",
+        "pattern": "panel-staging.paroquiasaojosecaragua.org.br",
+        "zone_name": "paroquiasaojosecaragua.org.br",
       },
       "assets": {
         "binding": "ASSETS",
@@ -59,8 +59,8 @@
       "preview_urls": false,
       "route": {
         "custom_domain": true,
-        "pattern": "panel.paroquiasaojosecaragua.com.br",
-        "zone_name": "paroquiasaojosecaragua.com.br",
+        "pattern": "panel.paroquiasaojosecaragua.org.br",
+        "zone_name": "paroquiasaojosecaragua.org.br",
       },
       "assets": {
         "binding": "ASSETS",
