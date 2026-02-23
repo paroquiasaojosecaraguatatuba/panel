@@ -19,7 +19,7 @@ export async function POST(request: Request) {
     path: "/",
     ...(isDevEnv
       ? { domain: "localhost" }
-      : { domain: ".paroquiasaojosecaragua.com.br" }),
+      : { domain: ".paroquiasaojosecaragua.org.br" }),
   });
 
   return NextResponse.json({
