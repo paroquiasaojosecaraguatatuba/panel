@@ -24,7 +24,7 @@ const useAuthStore = create<States>()(
       userIdentifier: "",
       wasCodeSent: false,
       isLogged: false,
-      token: null,
+      token: "null",
       initialized: false,
       logoutReason: null,
       email: "",

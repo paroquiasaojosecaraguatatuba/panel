@@ -1,3 +1,5 @@
+'use client';
+
 import { BackButton } from "@/components/BackButton";
 import { Title } from "@/components/Typographies/Title";
 
@@ -14,8 +16,25 @@ import {
   Root as InputRoot,
   Control as InputControl,
 } from "@/components/Form/Input";
+import useChurchSchema from "@/schemas/useChurchSchema";
+import { useFormik } from "formik";
 
 export default function AddChurch() {
+  const validationSchema = useChurchSchema()
+
+  const formik = useFormik({
+    initialValues: {
+      name: '',
+      type: 'chapel',
+      address: '',
+      coverId: '',
+    },
+    validationSchema,
+    onSubmit: (values) => {
+      console.log(values)
+    }
+  })
+
   return (
     <>
       <BackButton href="/churches" />
@@ -43,7 +62,7 @@ export default function AddChurch() {
         <div className="lg:grid-cols-form flex flex-col gap-3 pb-5 lg:grid">
           <label
             htmlFor="name"
-            className="text-sm font-medium text-brand-800 dark:text-zinc-300"
+            className="text-sm font-medium text-brand-800"
           >
             Nome da Comunidade
           </label>
@@ -55,7 +74,7 @@ export default function AddChurch() {
         <div className="lg:grid-cols-form flex flex-col gap-3 pb-5 lg:grid">
           <label
             htmlFor="name"
-            className="text-sm font-medium text-brand-800 dark:text-zinc-300"
+            className="text-sm font-medium text-brand-800"
           >
             Classificação
           </label>
@@ -68,7 +87,7 @@ export default function AddChurch() {
         <div className="lg:grid-cols-form flex flex-col gap-3 pb-5 lg:grid">
           <label
             htmlFor="address"
-            className="text-sm font-medium text-brand-800 dark:text-zinc-300"
+            className="text-sm font-medium text-brand-800"
           >
             Endereço
           </label>

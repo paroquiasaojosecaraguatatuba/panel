@@ -14,11 +14,11 @@ export const SelectItem = ({ text, ...props }: SelectItemProps) => {
       {...props}
     >
       <Select.ItemText asChild>
-        <span className="text-brand-900 dark:text-white">{text}</span>
+        <span className="text-brand-900">{text}</span>
       </Select.ItemText>
 
       <Select.ItemIndicator>
-        <Check className="h-4 w-4 text-brand-500 dark:text-brand-300" />
+        <Check className="h-4 w-4 text-brand-500" />
       </Select.ItemIndicator>
     </Select.Item>
   );

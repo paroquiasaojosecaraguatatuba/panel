@@ -10,7 +10,7 @@ const AppProvider = ({ children }: { children?: React.ReactNode }) => {
   return (
     <HydrationProvider>
       <QueryClientProvider client={queryClient}>
-        <AuthGuardProvider />
+        {/*<AuthGuardProvider />*/}
         {children}
       </QueryClientProvider>
     </HydrationProvider>
