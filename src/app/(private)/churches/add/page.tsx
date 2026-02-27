@@ -67,7 +67,7 @@ export default function AddChurch() {
             Nome da Comunidade
           </label>
           <InputRoot>
-            <InputControl id="name" type="text" />
+            <InputControl id="name" name="name" type="text" value={formik.values.name} onChange={formik.handleChange} />
           </InputRoot>
         </div>
 
@@ -78,7 +78,7 @@ export default function AddChurch() {
           >
             Classificação
           </label>
-          <Select placeholder="" defaultValue="chapel">
+          <Select name="type" placeholder="" defaultValue="chapel" value={formik.values.type} onValueChange={formik.handleChange}>
             <SelectItem value="chapel" text="Comunidade" defaultChecked />
             <SelectItem value="parish_church" text="Matriz" />
           </Select>
@@ -92,7 +92,7 @@ export default function AddChurch() {
             Endereço
           </label>
           <InputRoot>
-            <InputControl id="address" type="text" />
+            <InputControl id="address" name="address" type="text" value={formik.values.address} onChange={formik.handleChange} />
           </InputRoot>
         </div>
       </form>
