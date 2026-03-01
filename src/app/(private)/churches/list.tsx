@@ -8,6 +8,7 @@ export const CommunitiesList = () => {
   const { data } = useQuery({
     queryKey: ["communities"],
     queryFn: listCommunities,
+    refetchOnWindowFocus: false,
   });
 
   const communities = data?.communities || [];

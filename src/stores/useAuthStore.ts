@@ -24,7 +24,7 @@ const useAuthStore = create<States>()(
       userIdentifier: "",
       wasCodeSent: false,
       isLogged: false,
-      token: "null",
+      token: null,
       initialized: false,
       logoutReason: null,
       email: "",
@@ -56,7 +56,9 @@ const useAuthStore = create<States>()(
     {
       name: "authentication-store",
       storage: createJSONStorage(() => localStorage),
-      partialize: () => ({}),
+      partialize: (state) => ({
+        token: state.token,
+      }),
     },
   ),
 );

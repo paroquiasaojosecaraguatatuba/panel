@@ -35,7 +35,7 @@ export const api = async <ResponseData, K extends string = never>(
     "Content-Type": "application/json",
     "X-Timezone-Offset": timezoneOffset,
     "X-Timezone": timezone,
-    Authorization: `Bearer ${token}`,
+    ...(token ? { Authorization: `Bearer ${token}` } : {}),
     ...init?.headers,
   };
 
@@ -55,6 +55,8 @@ export const api = async <ResponseData, K extends string = never>(
       if (typeof window !== "undefined") window.location.href = "/login";
       return new Promise<never>(() => {});
     }
+
+    useAuthStore.setState({ token: newToken });
 
     // Recursivo: tenta novamente com retry=true para evitar loop infinito
     return api(
