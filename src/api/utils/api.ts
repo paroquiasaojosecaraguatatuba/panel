@@ -42,7 +42,11 @@ export const api = async <ResponseData, K extends string = never>(
   const response = await fetch(endpoint, { ...init, headers });
   const data = (await response.json()) as ResponseErrorFields<K> & ResponseData;
 
-  if (response.status === 401 && !options?.retry) {
+  if (
+    response.status === 401 &&
+    typeof options?.retry === "boolean" &&
+    options.retry !== false
+  ) {
     const { statusCode, token: newToken } = await refresh();
 
     if (statusCode !== 200) {
@@ -55,7 +59,7 @@ export const api = async <ResponseData, K extends string = never>(
     useAuthStore.setState({ token: newToken });
 
     // Recursivo: tenta novamente com retry=true para evitar loop infinito
-    return api(path, init, { ...options, retry: true });
+    return api(path, init, { ...options, retry: false });
   }
 
   return { ...data, statusCode: response.status };

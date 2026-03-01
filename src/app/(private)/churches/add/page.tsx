@@ -47,7 +47,6 @@ export default function AddChurch() {
     validationSchema,
     enableReinitialize: true,
     onSubmit: (values) => {
-      console.log("Submitting with values:", values);
       mutate(values, {
         onSuccess: ({ community, statusCode, message }) => {
           if (community && statusCode === 201) {
@@ -62,8 +61,6 @@ export default function AddChurch() {
       });
     },
   });
-
-  console.log("Formik values:", formik.values);
 
   return (
     <>
@@ -113,9 +110,9 @@ export default function AddChurch() {
             placeholder=""
             defaultValue="chapel"
             value={formik.values.type}
-            onValueChange={(newValue: string) =>
-              formik.setFieldValue("type", newValue)
-            }
+            onValueChange={(newValue: string) => {
+              formik.setFieldValue("type", newValue);
+            }}
           >
             <SelectItem value="chapel" text="Comunidade" defaultChecked />
             <SelectItem value="parish_church" text="Matriz" />
