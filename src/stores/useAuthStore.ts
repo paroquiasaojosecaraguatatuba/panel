@@ -1,16 +1,27 @@
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
 
+type User = {
+  name: string;
+  email: string;
+  role: "user" | "admin" | "viewer";
+};
+
 interface States {
   isLogged: boolean;
   token: string | null;
+  user: User;
   initialized: boolean;
   wasCodeSent: boolean;
   email: string;
   sessionId: string;
   showOnboarding: boolean;
   onboardingName: string;
-  setLogged: (data: { token?: string; initialized?: boolean }) => void;
+  setLogged: (data: {
+    token?: string;
+    user: User;
+    initialized?: boolean;
+  }) => void;
   setLoggedOut: () => void;
   setEmail: (email: string) => void;
   setWasCodeSent: (wasCodeSent: boolean) => void;
@@ -25,6 +36,7 @@ const useAuthStore = create<States>()(
       wasCodeSent: false,
       isLogged: false,
       token: null,
+      user: {} as User,
       initialized: false,
       logoutReason: null,
       email: "",
@@ -44,6 +56,7 @@ const useAuthStore = create<States>()(
           wasCodeSent: false,
           isLogged: false,
           token: null,
+          user: null,
           initialized: false,
         });
       },

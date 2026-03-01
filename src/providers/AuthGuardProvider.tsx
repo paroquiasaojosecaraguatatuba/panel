@@ -31,9 +31,9 @@ const AuthGuardProvider = () => {
     }
 
     mutate(controller.signal, {
-      onSuccess: ({ statusCode, token }) => {
+      onSuccess: ({ statusCode, token, user }) => {
         if (statusCode === 200) {
-          setLogged({ token });
+          setLogged({ token, user });
         }
 
         setSessionChecked(true);

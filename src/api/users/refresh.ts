@@ -2,6 +2,11 @@ import { api } from "../utils/api";
 
 interface RefreshResponse {
   token: string;
+  user: {
+    name: string;
+    email: string;
+    role: "user" | "admin" | "viewer";
+  };
 }
 
 export const refresh = async (signal?: AbortSignal) => {

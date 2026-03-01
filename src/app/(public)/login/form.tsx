@@ -21,9 +21,9 @@ export const Form = () => {
 
   const { mutate } = useMutation({
     mutationFn: login,
-    onSuccess: ({ message, statusCode, token, fields }) => {
+    onSuccess: ({ message, statusCode, token, user, fields }) => {
       if (statusCode === 200) {
-        setLogged({ token });
+        setLogged({ token, user });
         navigate.push("/");
       } else if (fields) {
         handleFieldErrors(fields, formik.setFieldError);
