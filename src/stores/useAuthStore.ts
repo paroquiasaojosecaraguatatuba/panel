@@ -36,7 +36,11 @@ const useAuthStore = create<States>()(
       wasCodeSent: false,
       isLogged: false,
       token: null,
-      user: {} as User,
+      user: {
+        name: "",
+        email: "",
+        role: "viewer",
+      },
       initialized: false,
       logoutReason: null,
       email: "",
@@ -56,7 +60,11 @@ const useAuthStore = create<States>()(
           wasCodeSent: false,
           isLogged: false,
           token: null,
-          user: {} as User,
+          user: {
+            name: "",
+            email: "",
+            role: "viewer",
+          },
           initialized: false,
         });
       },
