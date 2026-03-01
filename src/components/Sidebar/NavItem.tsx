@@ -11,9 +11,15 @@ export interface NavItemProps {
     title: string;
     href: string;
   }[];
+  onLinkClick: () => void;
 }
 
-export function NavItem({ title, icon: Icon, links }: NavItemProps) {
+export function NavItem({
+  title,
+  icon: Icon,
+  links,
+  onLinkClick,
+}: NavItemProps) {
   const [open, setOpen] = useState(false);
 
   const [parent] = useAutoAnimate();
@@ -34,6 +40,7 @@ export function NavItem({ title, icon: Icon, links }: NavItemProps) {
               key={`nav-item-${link.href}`}
               href={link.href}
               className="block rounded-lg px-4 py-2 text-sm text-brand-200 hover:bg-brand-700/30 hover:text-brand-50 transition-colors focus-visible:ring-2 focus-visible:ring-brand-400 outline-none"
+              onClick={onLinkClick}
             >
               {link.title}
             </Link>

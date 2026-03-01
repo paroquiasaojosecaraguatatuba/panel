@@ -13,10 +13,19 @@ import { Logo } from "./Logo";
 import * as Collapsible from "@radix-ui/react-collapsible";
 import { NavItem } from "./NavItem";
 import { Profile } from "./Profile";
+import { useState } from "react";
 
 export function Sidebar() {
+  const [open, setOpen] = useState(false);
+
+  const handleClose = () => setOpen(false);
+
   return (
-    <Collapsible.Root className="fixed top-0 right-0 left-0 z-20 flex flex-col gap-6 border-b border-zinc-200 bg-brand-gradient py-4 data-[state=open]:bottom-0 lg:right-auto lg:border-r lg:py-8 lg:data-[state=closed]:bottom-0 lg:w-90">
+    <Collapsible.Root
+      open={open}
+      onOpenChange={setOpen}
+      className="fixed top-0 right-0 left-0 z-20 flex flex-col gap-6 border-b border-zinc-200 bg-brand-gradient py-4 data-[state=open]:bottom-0 lg:right-auto lg:border-r lg:py-8 lg:data-[state=closed]:bottom-0 lg:w-90"
+    >
       <div className="flex items-center justify-between px-4 lg:px-6">
         <Logo />
         <Collapsible.Trigger asChild className="lg:hidden">
@@ -46,25 +55,104 @@ export function Sidebar() {
               },
               {
                 title: "Autoridades",
-                href: "/autoridades",
+                href: "/clergies",
               },
               {
                 title: "Pastorais",
-                href: "/pastorais",
+                href: "/pastorals",
               },
             ]}
+            onLinkClick={handleClose}
           />
-          <NavItem title="Agenda" icon={Calendar} links={[]} />
-          <NavItem title="Blog" icon={MessageSquare} links={[]} />
-          <NavItem title="Galeria" icon={Image} links={[]} />
+          <NavItem
+            title="Agenda"
+            icon={Calendar}
+            links={[
+              {
+                title: "Horários de Missa",
+                href: "/mass-schedules",
+              },
+              {
+                title: "Eventos",
+                href: "/events",
+              },
+              {
+                title: "Programação Completa",
+                href: "/full-schedule",
+              },
+            ]}
+            onLinkClick={handleClose}
+          />
+          <NavItem
+            title="Blog"
+            icon={MessageSquare}
+            links={[
+              {
+                title: "Avisos",
+                href: "/notices",
+              },
+              {
+                title: "Notícias",
+                href: "/news",
+              },
+              {
+                title: "Artigos",
+                href: "/articles",
+              },
+            ]}
+            onLinkClick={handleClose}
+          />
+          <NavItem
+            title="Galeria"
+            icon={Image}
+            links={[
+              {
+                title: "Fotos",
+                href: "/photos",
+              },
+              {
+                title: "Vídeos",
+                href: "/videos",
+              },
+              {
+                title: "Álbuns",
+                href: "/albums",
+              },
+            ]}
+            onLinkClick={handleClose}
+          />
         </div>
 
         <div className="mt-auto flex flex-col gap-6 ">
           <div className="h-px bg-brand-700/30" />
 
           <nav className="space-y-0.5 px-4">
-            <NavItem title="Suporte" icon={LifeBuoy} links={[]} />
-            <NavItem title="Configurações" icon={Cog} links={[]} />
+            <NavItem
+              title="Suporte"
+              icon={LifeBuoy}
+              links={[
+                {
+                  title: "FAQ",
+                  href: "/faq",
+                },
+              ]}
+              onLinkClick={handleClose}
+            />
+            <NavItem
+              title="Configurações"
+              icon={Cog}
+              links={[
+                {
+                  title: "Alterar Senha",
+                  href: "/change-password",
+                },
+                {
+                  title: "Gerenciar Acessos",
+                  href: "/manage-access",
+                },
+              ]}
+              onLinkClick={handleClose}
+            />
           </nav>
 
           <div className="h-px bg-brand-700/30" />
