@@ -3,6 +3,7 @@ import { Describe } from "@/components/Typographies/Describe";
 import { Title } from "@/components/Typographies/Title";
 import { Church } from "lucide-react";
 import Link from "next/link";
+import { CommunitiesList } from "./list";
 
 export default function Churches() {
   return (
@@ -15,6 +16,7 @@ export default function Churches() {
       </Describe>
 
       <div className="grid grid-cols-card gap-6 py-6">
+        <CommunitiesList />
         <Link href="/churches/add">
           <AddCard
             title="Adicione uma igreja"

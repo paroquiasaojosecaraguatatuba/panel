@@ -4,8 +4,8 @@ import { CheckCircle2, Trash2 } from "lucide-react";
 import { tv, type VariantProps } from "tailwind-variants";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { useFileInputStore } from "@/stores/useFileInputStore";
 import { useCallback } from "react";
+import { useFileInputStore } from "@/stores/useFileInputStore";
 
 const fileItem = tv({
   slots: {

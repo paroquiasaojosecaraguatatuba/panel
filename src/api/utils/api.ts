@@ -1,6 +1,7 @@
 import useLocaleConfigStore from "@/stores/useLocaleConfigStore";
 import useAuthStore from "@/stores/useAuthStore";
 import { logout } from "../users/logout";
+import { refresh } from "../users/refresh";
 
 export const apiBaseUrl = process.env.NEXT_PUBLIC_BASE_API_URL as string;
 
@@ -14,8 +15,8 @@ export const api = async <ResponseData, K extends string = never>(
   path: string,
   init?: RequestInit,
   options?: {
-    authenticated?: boolean;
     apiBaseUrl?: string;
+    retry?: boolean;
   },
 ): Promise<
   ResponseErrorFields<K> &
@@ -29,31 +30,32 @@ export const api = async <ResponseData, K extends string = never>(
 
   const endpoint = `${options?.apiBaseUrl || apiBaseUrl}${path}`;
 
-  const response = await fetch(endpoint, {
-    ...init,
-    headers: {
-      "Accept-Language": lang,
-      "Content-Type": "application/json",
-      "X-Timezone-Offset": timezoneOffset,
-      "X-Timezone": timezone,
-      ...(options?.authenticated
-        ? {
-            Authorization: `Bearer ${token}`,
-          }
-        : {}),
-      ...init?.headers,
-    },
-  });
+  const headers = {
+    "Accept-Language": lang,
+    "Content-Type": "application/json",
+    "X-Timezone-Offset": timezoneOffset,
+    "X-Timezone": timezone,
+    Authorization: `Bearer ${token}`,
+    ...init?.headers,
+  };
 
+  const response = await fetch(endpoint, { ...init, headers });
   const data = (await response.json()) as ResponseErrorFields<K> & ResponseData;
 
-  if (options?.authenticated && response.status === 401) {
-    setLoggedOut();
-    await logout();
-    if (typeof window !== "undefined") {
-      window.location.href = "/login";
+  if (response.status === 401 && !options?.retry) {
+    const { statusCode, token: newToken } = await refresh();
+
+    if (statusCode !== 200) {
+      setLoggedOut();
+      await logout();
+      if (typeof window !== "undefined") window.location.href = "/login";
+      return new Promise<never>(() => {});
     }
-    return new Promise<never>(() => {}); // nunca resolve para aguardar o redirecionamento ser concluído
+
+    useAuthStore.setState({ token: newToken });
+
+    // Recursivo: tenta novamente com retry=true para evitar loop infinito
+    return api(path, init, { ...options, retry: true });
   }
 
   return { ...data, statusCode: response.status };

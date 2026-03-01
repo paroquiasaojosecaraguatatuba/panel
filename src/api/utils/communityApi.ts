@@ -7,7 +7,7 @@ interface ResponseErrorFields<K extends string> {
 }
 
 export const communityApi = async <ResponseData, K extends string = never>(
-  path: string,
+  path = "",
   init?: RequestInit,
 ): Promise<
   ResponseErrorFields<K> &

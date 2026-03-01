@@ -3,7 +3,7 @@ import { tv, type VariantProps } from "tailwind-variants";
 
 const button = tv({
   base: [
-    "cursor-pointer rounded-lg  px-4 py-2 text-sm font-semibold outline-none shadow-sm",
+    "cursor-pointer rounded-lg h-10 px-4 py-2 text-sm font-semibold outline-none shadow-sm",
     "focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-violet-500",
     "active:opacity-80",
   ],
@@ -28,5 +28,18 @@ export type ButtonProps = ComponentProps<"button"> &
   VariantProps<typeof button>;
 
 export default function Button({ variant, className, ...props }: ButtonProps) {
-  return <button {...props} className={button({ variant, className })} />;
+  return (
+    <button
+      {...props}
+      className={button({
+        variant,
+        className: [
+          className,
+          props.disabled ? "opacity-50 cursor-not-allowed" : "",
+        ]
+          .filter(Boolean)
+          .join(" "),
+      })}
+    />
+  );
 }

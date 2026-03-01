@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { BackButton } from "@/components/BackButton";
 import { Title } from "@/components/Typographies/Title";
@@ -18,22 +18,52 @@ import {
 } from "@/components/Form/Input";
 import useChurchSchema from "@/schemas/useChurchSchema";
 import { useFormik } from "formik";
+import { useMutation } from "@tanstack/react-query";
+import { createCommunity } from "@/api/communities/create";
+import { useNavigate } from "@/hooks/useNavigate";
+import { showAlert } from "@/utils/showAlert";
+import { Spinner } from "@/components/Loadings/Spinner";
+import { useFileInputStore } from "@/stores/useFileInputStore";
 
 export default function AddChurch() {
-  const validationSchema = useChurchSchema()
+  const validationSchema = useChurchSchema();
+  const navigate = useNavigate();
+  const { files } = useFileInputStore();
+
+  const coverId = files.find((f) => f.state === "complete")?.id;
+
+  const { mutate, isPending } = useMutation({
+    networkMode: "always",
+    mutationFn: createCommunity,
+  });
 
   const formik = useFormik({
     initialValues: {
-      name: '',
-      type: 'chapel',
-      address: '',
-      coverId: '',
+      name: "",
+      type: "chapel",
+      address: "",
+      coverId,
     },
     validationSchema,
+    enableReinitialize: true,
     onSubmit: (values) => {
-      console.log(values)
-    }
-  })
+      console.log("Submitting with values:", values);
+      mutate(values, {
+        onSuccess: ({ community, statusCode, message }) => {
+          if (community && statusCode === 201) {
+            navigate.push("/churches");
+          } else {
+            showAlert(`Erro ao criar comunidade: ${message}`);
+          }
+        },
+        onError: (error) => {
+          showAlert(`Erro ao criar comunidade: ${error.message}`);
+        },
+      });
+    },
+  });
+
+  console.log("Formik values:", formik.values);
 
   return (
     <>
@@ -60,25 +90,33 @@ export default function AddChurch() {
         </div>
 
         <div className="lg:grid-cols-form flex flex-col gap-3 pb-5 lg:grid">
-          <label
-            htmlFor="name"
-            className="text-sm font-medium text-brand-800"
-          >
+          <label htmlFor="name" className="text-sm font-medium text-brand-800">
             Nome da Comunidade
           </label>
           <InputRoot>
-            <InputControl id="name" name="name" type="text" value={formik.values.name} onChange={formik.handleChange} />
+            <InputControl
+              id="name"
+              name="name"
+              type="text"
+              value={formik.values.name}
+              onChange={formik.handleChange}
+            />
           </InputRoot>
         </div>
 
         <div className="lg:grid-cols-form flex flex-col gap-3 pb-5 lg:grid">
-          <label
-            htmlFor="name"
-            className="text-sm font-medium text-brand-800"
-          >
+          <label htmlFor="name" className="text-sm font-medium text-brand-800">
             Classificação
           </label>
-          <Select name="type" placeholder="" defaultValue="chapel" value={formik.values.type} onValueChange={formik.handleChange}>
+          <Select
+            name="type"
+            placeholder=""
+            defaultValue="chapel"
+            value={formik.values.type}
+            onValueChange={(newValue: string) =>
+              formik.setFieldValue("type", newValue)
+            }
+          >
             <SelectItem value="chapel" text="Comunidade" defaultChecked />
             <SelectItem value="parish_church" text="Matriz" />
           </Select>
@@ -92,14 +130,30 @@ export default function AddChurch() {
             Endereço
           </label>
           <InputRoot>
-            <InputControl id="address" name="address" type="text" value={formik.values.address} onChange={formik.handleChange} />
+            <InputControl
+              id="address"
+              name="address"
+              type="text"
+              value={formik.values.address}
+              onChange={formik.handleChange}
+            />
           </InputRoot>
         </div>
       </form>
 
       <div className="lg:grid lg:grid-cols-form flex gap-3 pt-4 lg:justify-end items-center border-t border-brand-100/60">
         <div className="flex lg:justify-end col-start-2">
-          <Button>Adicionar Igreja</Button>
+          <Button
+            disabled={isPending}
+            className="w-36"
+            onClick={formik.submitForm}
+          >
+            {isPending ? (
+              <Spinner className="border-brand-300 border-2 w-5 h-5" />
+            ) : (
+              "Adicionar Igreja"
+            )}{" "}
+          </Button>
         </div>
       </div>
     </>

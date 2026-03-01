@@ -4,7 +4,7 @@ interface RefreshResponse {
   token: string;
 }
 
-export const refresh = async (signal: AbortSignal) => {
+export const refresh = async (signal?: AbortSignal) => {
   const result = await api<RefreshResponse>("/token/refresh", {
     method: "POST",
     signal,

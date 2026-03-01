@@ -3,7 +3,7 @@
 import * as Tabs from "@radix-ui/react-tabs";
 import { TabItem } from "./TabItem";
 import { useState } from "react";
-import { AddChurchDialog } from "../AddChurchDialog";
+import { AddChurchDialog } from "../Dialogs/AddChurchDialog";
 
 export function SettingsTabs() {
   const [currentTab, setCurrentTab] = useState("tab1");

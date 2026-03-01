@@ -1,11 +1,11 @@
 "use client";
 
 import { User } from "lucide-react";
-import { useFileInput } from "./Root";
 import { useMemo } from "react";
+import { useFileInputStore } from "@/stores/useFileInputStore";
 
 export const ImagePreview = () => {
-  const { files } = useFileInput();
+  const { files } = useFileInputStore();
 
   const previewURL = useMemo(() => {
     if (files.length === 0) {

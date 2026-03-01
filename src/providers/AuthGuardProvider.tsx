@@ -8,6 +8,7 @@ import useAuthStore from "@/stores/useAuthStore";
 import { refresh } from "@/api/users/refresh";
 import { routeUtils } from "@/utils/routeUtils";
 import { useNavigate } from "@/hooks/useNavigate";
+import { FullLoading } from "@/components/Loadings/FullLoading";
 
 const AuthGuardProvider = () => {
   const pathname = usePathname();
@@ -67,7 +68,7 @@ const AuthGuardProvider = () => {
     }
   }, [sessionChecked, isLogged, email, pathname, navigate, token]);
 
-  return null;
+  return sessionChecked ? null : <FullLoading />;
 };
 
 export default AuthGuardProvider;

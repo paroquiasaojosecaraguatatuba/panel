@@ -14,9 +14,7 @@ export const AddChurchDialog = () => {
       <Dialog.Trigger className="outline-none focus-visible:ring-4 focus-visible:ring-offset-1 focus-visible:ring-brand-100 rounded-xl">
         <AddCard
           title="Adicione uma igreja"
-          subtitle="para
-            gerenciar a programação e as informações de cada comunidade da
-            paróquia."
+          subtitle="para gerenciar a programação e as informações de cada comunidade da paróquia."
           icon={Church}
         />
       </Dialog.Trigger>
