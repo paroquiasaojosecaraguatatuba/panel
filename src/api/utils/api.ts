@@ -56,10 +56,18 @@ export const api = async <ResponseData, K extends string = never>(
       return new Promise<never>(() => {});
     }
 
-    useAuthStore.setState({ token: newToken });
-
     // Recursivo: tenta novamente com retry=true para evitar loop infinito
-    return api(path, init, { ...options, retry: false });
+    return api(
+      path,
+      {
+        ...init,
+        headers: {
+          ...init?.headers,
+          Authorization: `Bearer ${newToken}`,
+        },
+      },
+      { ...options, retry: false },
+    );
   }
 
   return { ...data, statusCode: response.status };
