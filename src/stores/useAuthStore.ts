@@ -56,7 +56,7 @@ const useAuthStore = create<States>()(
           wasCodeSent: false,
           isLogged: false,
           token: null,
-          user: null,
+          user: {} as User,
           initialized: false,
         });
       },
