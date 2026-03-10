@@ -1,8 +1,20 @@
-import { DevNoticeCard } from "@/components/DevNoticeCard";
-import { Describe } from "@/components/Typographies/Describe";
-import { Title } from "@/components/Typographies/Title";
+'use client';
+
+import { listCommunities } from '@/api/communities/list';
+import { Describe } from '@/components/Typographies/Describe';
+import { Title } from '@/components/Typographies/Title';
+import { useQuery } from '@tanstack/react-query';
+import { ChurchCard } from './church-card';
 
 export default function MassSchedules() {
+  const { data } = useQuery({
+    queryKey: ['communities'],
+    queryFn: listCommunities,
+    refetchOnWindowFocus: false,
+  });
+
+  const communities = data?.communities || [];
+
   return (
     <>
       <Title>Horários de Missa</Title>
@@ -13,7 +25,13 @@ export default function MassSchedules() {
       </Describe>
 
       <div className="py-6">
-        <DevNoticeCard />
+        {communities
+          .sort((a, b) =>
+            a.type === 'parish_church' && b.type === 'chapel' ? -1 : 1
+          )
+          .map((community) => (
+            <ChurchCard key={community.id} community={community} />
+          ))}
       </div>
     </>
   );
